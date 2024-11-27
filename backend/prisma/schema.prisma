@@ -1,0 +1,30 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Facility {
+  id               String   @id @default(uuid())
+  type             String
+  orgPracId        String  @unique
+  username         String?
+  name             String
+  ranking          Int
+  photo            String?
+  category         String
+  subCategory      String[]
+  rating           Float
+  totalAppointments Int
+  zone             String[]
+  branch           String[]
+  areaOfPractice   String
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@index([name])
+  @@index([category])
+}
